@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+    <title>Surveillance</title>
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+        }
+.container{
+
+height: 100vh;
+}
+
+.main{
+    background-color:rgb(3, 19, 54);
+    color:white;
+    height:140px;
+    font-family: "poppins";
+    font-weight: 300;
+    font-size:30px;
+     padding-top: 30px;
+    padding-left: 20px; 
+     
+}
+.wlcm{
+    font-size: 30px;
+    padding-left: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 200;
+    padding-top: 20px ;
+  
+}
+#bttn{
+    background-color:rgb(12, 176, 12);
+    border:none;
+    padding:16px;
+    font-size: 18px;
+    border-radius: 10px;
+    color:white;
+    margin-left: 50px;
+    cursor: pointer;
+    margin-top: 20px ;
+   
+}
+.exit{
+    padding-top: 20px ;
+    font-size: 20px;
+    margin-left: 50px;
+    
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">FaceTracePro</div>
+        <div class="heading">
+            <p class="wlcm">Welcome to Surveillance Mode<p>
+                <a href="/detect"><button id="bttn">Start webcam</button></a>
+                <p class="exit">Press <b>q</b> to Close Camera</p>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+
+
+
+  <!-- Vendor CSS Files -->
+ 
+  
+ 
+
+
+
+
+  
+  
+  <!-- <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> -->
+  <link href="/static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  
+<!-- <link rel="stylesheet" href="{% static 'css/adminhome.css' %}"> -->
+
+    <title>FaceTracePro-police</title>
+   <style>
+    *{
+    margin:0px;
+    padding:0px;
+}
+.main{
+    background-color:white;
+    min-height:77vh;
+}
+.heading{
+    font-size:30px;
+    font-weight: 300;
+   
+    color:#7b8ca3;
+    margin-left:20px;
+    font-family: "poppins";
+}
+.elementgrp{
+    margin-left:220px;
+    font-size:16px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "poppins";
+
+}
+.element{
+    margin:30px;
+    color:#7b8ca3;
+    
+}
+.special{
+    border:2px solid #7b8ca3;
+    border-radius: 30px;
+    padding:7px;
+}
+.description{
+    padding:20px;
+    margin-left:10px;
+    padding-top:70px;
+    width:50%;
+
+}
+.head1{
+    
+    font-size:80px;
+    width:max-content;
+    color:rgb(3, 19, 54);
+    margin-bottom:10px;
+}
+.head2{
+    color:#7b8ca3;
+    font-size:20px;
+    text-align: justify;
+    
+
+}
+.image{
+    width:500px;
+    height:auto;
+}
+.hero{
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    height:80%;
+}
+.navbar{
+    display:flex;
+    justify-content: space-evenly;
+    align-items:center;
+    font-family: "poppins";
+   
+
+}
+.container{
+    background-color:rgb(3, 19, 54);
+    min-height:100vh;
+}
+
+.atag{
+    color:#7b8ca3;
+text-decoration: none;
+}
+.atag:hover {
+    color: rgb(93, 173, 237); /* Change the color to blue when hovered */
+}
+.footer {
+            background-color:white;
+            color:#31517e;
+            padding: 50px 0;
+            display: flex;
+            flex-wrap: wrap;
+             padding-left: 30px;
+            padding-right: 30px; 
+
+            justify-content: space-between;
+            font-family: 'Poppins', sans-serif;
+        }
+      .footer h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color:#7b8ca3;
+           
+        }
+        .footer-link h3{
+             color:#7b8ca3; 
+           
+            font-size: 24px; 
+           
+        }
+   
+
+        .footer p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #5e5e5e;
+        }
+
+        .footer-link {
+            display: flex;
+            flex-direction: column;
+            
+           
+
+        }
+
+        .footer-link a {
+            padding-top: 10px;
+            color:rgb(3, 19, 54);
+           line-height: 2;
+            text-decoration: none;
+            transition: color 0.3s;
+           
+          
+        }
+
+        .footer-link a:hover {
+            color: #719ddb;
+        }
+        .footer-newsletter {
+  padding: 50px 0;
+
+  text-align: center;
+  font-size: 15px;
+ margin-left: 400px;;
+  color: #444444;
+  width:50%;
+}
+.foot2{
+    background:rgb(220,220,223);
+}
+
+ .footer-newsletter h4 {
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 600;
+  color:rgb(3, 19, 54);
+}
+
+        .footer-newsletter form {
+    margin-top: 30px;
+    background: #fff;
+    padding: 10px 20px; 
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+    text-align: left;
+}
+
+.footer-newsletter form input[type=email] {
+    border: none;
+    outline: none;
+    padding: 10px; 
+    width: calc(100% - 150px); 
+}
+
+.footer-newsletter form input[type=submit] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: none;
+    background-color:rgb(3, 19, 54);
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px; 
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+}
+
+.footer-newsletter form input[type=submit]:hover {
+    background: #296cca;
+}
+
+
+
+.copyright {
+    font-size: 20px;
+    padding-bottom: 40px;
+    color:#fff;
+}
+.desc {
+    text-align: center;
+    padding-top: 30px;
+    background-color:rgb(3, 19, 54);
+}
+    .marquee {
+        margin-left: 210px;;
+            width: 70%; /* Set your desired width */
+            overflow: hidden;
+            /* border: 2px solid #31517e;  */
+            border-radius: 10px; /* Rounded corners */
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);  */
+            background-color:rgb(3, 19, 54); 
+            box-shadow:(8 8 10px);
+           
+        }
+
+        .marquee-content {
+            white-space: nowrap;
+            padding: 10px; /* Add padding for better readability */
+            color: #fff; /* Text color */
+            font-family: 'Arial', sans-serif; /* Font family */
+            font-size: 18px; /* Font size */
+            
+            /* Animation */
+            /* animation: marqueeAnimation 15s linear infinite; */
+        }
+
+        /* @keyframes marqueeAnimation {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+      */
+  
+
+
+
+
+
+ 
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+   </style>
+</head>
+
+<body>
+        <div class="container">
+            <!-- <div class="marquee">
+                <marquee scrollamount="5">
+                    <div class="marquee-content">Finding a missing person can be a difficult task,but if you know where to look,it is often much easier to find a missing person.</div>
+                </marquee>
+            </div> -->
+        <div class="main">
+            <div class="navbar">
+                <div class="heading">FaceTrace Pro</div>
+                <div class="elementgrp">
+                    <div class="element"><a href="" class="atag">Home</a></div>
+                    <div class="element"><a href="/reportpolice" class="atag">Report Case</a></div>
+                    <div class="element"><a href="/missing" class="atag">All Missing Cases</a></div>
+                    <div class="element"><a href="/viewcase?police_id={{ user_id }}" class="atag">My Cases</a></div>
+                    <div class="element"><a href="/investigatingcase?police_id={{ user_id }}" class="atag">Investigating Cases</a></div>
+                    <div class="element special"><a href="/surveillance" class="atag">Surveillance Mode</a></div>
+                </div>
+                
+            </div>
+            
+                
+
+            
+            <div class="hero">
+                <!-- <div class="description">
+                    <div class="head1">Missing Person Tracker</div>
+                    <div class="head2">FaceTrace Pro, powered by AI and ML, is a dedicated initiative committed to
+                        finding and reuniting missing individuals with their families across India. We leverage
+                        cutting-edge technology and compassionate teamwork to ensure that no one is left behind.</div>
+                </div> -->
+                <img class="image" src="{% static 'images/image.png'%}" alt="notimg">
+            </div>
+        </div>
+        <div class="foot2">
+            <div class="footer-newsletter">
+                <h4>Join Our Newsletter</h4>
+                <p>Join the FaceTrace Pro Newsletter community to stay updated on our mission to reunite missing individuals with their families. By subscribing, you'll receive the latest news, updates, success stories, and insights into how technology is making a difference in our society.</p>
+                <form action="" method="post">
+                  <input type="email" name="email"><input type="submit" value="Subscribe">
+                </form>
+              </div>
+              </div>
+        
+          <div class="footer">
+            
+              <div class="footer-side">
+          
+            
+                <h3>FaceTrace Pro</h3>
+                <p class="face">
+                  42 MG Road <br>
+                  Trivandrum, Kerala, 695001<br>
+                  India <br><br>
+                  <strong>Phone:</strong> +91 99895 54885<br>
+                  <strong>Email:</strong> contact@facetracepro.com<br>
+                </p>
+              </div>
+             
+    
+              <div class="footer-link">
+                <div class="foot3">
+                <h3>Useful Links</h3></div>
+                <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                </ul>
+              </div>
+    
+            
+    
+            
+              
+    
+            </div>
+            <div class="desc">
+              <div class="copyright">
+                &copy; Copyright <strong><span>FaceTrace Pro</span></strong>. All Rights Reserved
+              </div>
+            </div>
+          </div>
+       
+     
+    
+     
+    </div>
+</body>
+
+</html>

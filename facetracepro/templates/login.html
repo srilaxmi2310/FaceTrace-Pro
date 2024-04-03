@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
+    <style>
+        body{
+	margin:0;
+	
+	background:white;
+	font:600 16px/18px 'Open Sans',sans-serif;
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+.container{
+    display:flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	
+}
+.description{
+	
+display:flex;
+background-color:rgb(3, 19, 54);
+height:100vh;
+width:50%;
+justify-content: center;
+align-items: center;
+
+}
+.image{
+	height:60%;
+
+        }
+
+.login-wrap{
+
+	width:100%;
+	margin:auto;
+	max-width:525px;
+	min-height:670px;
+	position:relative;
+	
+
+}
+.login-html{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:90px 70px 50px 70px;
+	/* background:black; */
+	/* color:rgb(123, 102, 102); */
+	color:#7b8ca3;
+	/* sign up*/
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	transform:rotateY(180deg);
+	backface-visibility:hidden;
+	transition:all .4s linear;
+	color:rgb(13, 13, 89); 
+	/* already member */
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+	display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+	text-transform:uppercase;
+}
+.login-html .tab{
+	font-size:22px;
+	margin-right:15px;
+	padding-bottom:5px;
+    margin:0 15px 10px 0;
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+	color:rgb(8, 27, 67);
+	
+	border-color:#3557a8;
+	/* sign in */
+}
+.login-form{
+	min-height:345px;
+	position:relative;
+	perspective:1000px;
+	transform-style:preserve-3d;
+	margin-top: 10px;
+	
+}
+.login-form .group{
+	margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button{
+	width:100%;
+	color:#f7eded;
+	/* button sign in */
+	display:block;
+} 
+.login-form .group .input,
+.login-form .group .button{
+    outline: none;
+    color:black;
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	/* background:rgba(20, 14, 14, 0.1); */
+	/* 
+	 */
+	/* usename box */
+	
+	background-color: rgb(220,220,223);
+}
+.login-form .group input[data-type="password"]{
+	text-security:circle;
+	-webkit-text-security:circle;
+}
+.login-form .group .label{
+	/* color:#31517e; */
+	color:rgb(3, 19, 54);
+	/* username write */
+	font-size:12px;
+}
+
+.sb{
+	background-color:rgb(3, 19, 54);
+    color:white;
+    border:none;
+    cursor: pointer;
+    padding:10px;
+    border-radius: 50px;
+    width:100px;
+	
+}
+.login-form .group label .icon{
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	/* keep me tick box */
+	position:absolute;
+	transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+	left:3px;
+	width:5px;
+	bottom:6px;
+	transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+	top:6px;
+	right:0;
+	transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+	color:rgb(8, 8, 100);
+	/* keep me text */
+}
+.login-form .group .check:checked + label .icon{
+	background:#193d80;
+}
+.login-form .group .check:checked + label .icon:before{
+	transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+	transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	transform:rotate(0);
+}
+
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgb(144, 144, 192);
+}
+.foot-lnk{
+	text-align:center;
+}
+.mynewbutton{
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="description"><img class="image" src="{% static 'images/hero-img.png'%}" alt="no image"></div>
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <div class="group">
+                        {%if error%}
+                        <p style="color: rgb(2,2,33); font-weight: 300;">{{error}}</p>
+                        {% endif %}
+                        <label for="user" class="label">Email</label>
+                        <input id="user" type="text" class="input" name="email" required>
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input"  name="password" required>
+                    </div>
+                    <div class="group">
+						<input type="hidden" name="is_private">
+                       <button type="submit" class="sb">Sign In</button>
+                    </div>
+                    </form>
+                </div>
+                <div class="sign-up-htm">
+                    <form action="/register/" method="POST" onsubmit="return validateSignUp();">
+                        {% csrf_token %}
+                    <div class="group">
+                        <label for="user2" class="label">Name</label>
+                        <input id="user2" type="text" class="input" name="name" required>
+                    </div>
+                    <div class="group">
+						
+                        <label for="email2" class="label">Email Address</label>
+                        <input id="email2" type="email" class="input" name="email" required>
+                    </div>
+                    <div class="group">
+						<!-- {%if error2%}
+                        <p style="color: rgb(2, 2, 33); font-weight: 300;">{{error2}}</p>
+                        {% endif %}  -->
+						<div class="error-message" id="password-error" style="color:rgb(1, 1, 26); font-size: 12px;"></div>
+                        <label for="pass2" class="label">Password</label>
+                        <input id="pass2" type="password" class="input" name="pp" required  oninput="clearPasswordError()">
+                    </div>
+					<div class="group">
+						<div class="error-message" id="phone-error" style="color:rgb(1, 1, 26); font-size: 12px;"></div>
+                        <label for="phn" class="label">Phone Number</label>
+                        <input id="phn" class="input" name="phone" required>
+                    </div>
+                   
+                    
+                    <div class="group">
+                       
+                        <button type="submit" class="sb">Sign Up</button>
+                    </div>
+                    </form>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script>
+    // Function to clear password error message
+    function clearPasswordError() {
+        document.getElementById("password-error").innerText = "";
+    }
+
+    // Function to validate sign-up form
+    function validateSignUp() {
+        var password = document.getElementById("pass2").value;
+        var phone = document.getElementById("phn").value;
+
+        // Regular expression to check if password contains at least 6 characters and a special character
+        var passwordRegex = /^(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
+
+        if (!passwordRegex.test(password)) {
+            // If password doesn't meet the criteria, show error message
+            document.getElementById("password-error").innerText = "Password should contain at least 6 characters including a special character (!@#$%^&*)";
+            return false; // Prevent form submission
+        } else {
+            // If password is valid, clear error message
+            document.getElementById("password-error").innerText = "";
+        }
+
+        // Check if phone number is 10 characters long
+        if (phone.length !== 10) {
+            // If phone number length is not 10, show error message
+            document.getElementById("phone-error").innerText = "Phone number should be 10 characters long";
+            return false; // Prevent form submission
+        } else {
+            // If phone number length is valid, clear error message
+            document.getElementById("phone-error").innerText = "";
+        }
+
+        return true; // Allow form submission
+    }
+</script>
+
+
+
+  
+</body>
+</html>

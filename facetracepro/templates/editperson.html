@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<title>Edit Person</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+
+<style>
+  
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
+  html,body{
+    margin: 0;
+    padding:0;
+    height:100%;
+    overflow-y: auto; 
+    overflow-x: hidden;
+  }
+  
+  .heading{
+    background-color:rgb(3, 19, 54);
+     height:140px;
+  }
+  
+
+    
+    h1 {
+     margin-left: 20px;
+      color:white;
+      padding:20px;
+      font-family: "poppins";
+      font-size:30px;
+      font-weight: 300;
+    }
+    
+    h2 {
+      text-align: center;
+      color:white;
+      font-weight: 300;
+      font-size: 40px;
+    }
+  
+    .form-group {
+     
+    
+      display: flex;
+      justify-content: space-between;
+   
+    }
+    #firstName, #lastName{
+      width:500px;
+    }
+    .form-group1{
+      display:flex;
+     
+      justify-content: space-between;
+    }
+    #fathersName,#dateOfBirth{
+      width:500px;
+      outline: none;
+  
+    }
+    .form-group3{
+      display:flex;
+     
+      justify-content: space-between;
+    }
+  
+   #email,#phoneNumber{
+      width:500px;
+    } 
+    #address{
+      height:40px;
+      
+    }
+    .form-group4{
+      display:flex;
+      
+      justify-content: space-between;
+    
+    }
+  
+    #aadharNumber,#missingDate,#location{
+      width:500px;
+    }
+    .main{
+      background-color: rgb(220,220,223);
+      height: 80%;
+      
+    }
+    .submain{
+      border-radius: 50px;
+      background-color: white;
+      width:90%;
+      margin: auto;
+     font-size: 20px;
+     font-weight: 300;
+      padding: 60px;
+    }
+    
+    label {
+      display: block;
+      
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      outline: none;
+    
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    
+    input[type="date"],
+    input[type="file"] {
+      outline: none;
+    
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+  
+    
+   
+   
+    .form-group5{
+      
+      display:flex;
+      justify-content: space-between;
+     
+    }
+    .gender-options {
+  display: flex !important;
+  width:500px;
+ justify-content: start !important;
+  margin-top: 30px;
+  margin-left: 0;
+border:3px solid black;
+  padding:10px
+}
+
+
+.gender-options label {
+
+ margin-left: 20px;;
+  margin-right: 80px !important;
+}
+.gender-options label:first-child {
+  margin-left: 0; 
+}
+.gender-options input[type="radio"] {
+ padding-right: 50px;
+ margin-left: 0px !important;
+}
+ 
+
+     
+     
+    
+    .form-group6{
+      display:flex;
+      justify-content: space-between;
+   
+    
+    }
+  
+    
+    button[type="submit"] {
+      background-color:rgb(3, 19, 54);
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width:100px;
+    }
+    
+    button[type="submit"]:hover {
+      background-color:rgb(220,220,223);
+
+    }
+    
+    .privacy-note {
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .file-status {
+      font-size: 12px;
+      color: #666;
+    }
+    .form-group,
+  .form-group1,
+  .form-group2,
+  .form-group3,
+  .form-group4,
+  .form-group5,
+  .form-group6 {
+    margin-bottom: 20px; 
+  }
+  label {
+    margin-bottom: 5px;
+  }
+  input,
+  textarea,
+  select {
+    outline: none;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;;
+  }
+  #image{
+    width:500px;
+  }
+  .container{
+    min-height: 100vh;
+    padding-left: 0;
+    padding-right: 0;
+  }
+ 
+    
+    
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="heading">
+  <h1>FaceTrace Pro</h1>
+  <h2>Edit Person</h2>
+ 
+</div>
+
+  <form action="" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+  <div class="main">
+    <div class="submain">
+<div class="form-group">
+    <div>
+        <input type="text" id="pid" name="p_id" required class="inp" value="{{person.id}}" hidden>
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" placeholder="Enter Your First Name" class="inp" name="first_name" value="{{person.first_name}}">
+    </div>
+    <div>
+ <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" placeholder="Enter your Surname" class="inp" name="last_name" value="{{person.last_name}}">
+    </div>
+</div>
+    <div class="form-group1">
+      <div>
+      <label for="fathersName">Father's Name</label>
+      <input type="text" id="fathersName" placeholder="Enter Father's Name" class="inp" name="fathers_name" value="{{person.fathers_name}}">
+      </div>
+    <div>
+      <label for="dateOfBirth">Date of Birth</label>
+      <input type="date" id="dateOfBirth" placeholder="dd-mm-yyyy" class="inp" name="dob" value="{{person.date_of_birth}}">
+    </div>
+    </div>
+    <div class="form-group2">
+      <label for="address">Address</label>
+      <textarea id="address" placeholder="Enter your Address" class="inp" name="address" >{{ person.address|default:'' }}</textarea>
+    </div>
+    <div class="form-group3">
+      <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="yourEmail@example.com" class="inp" name="email" value="{{person.email}}">
+      <p class="privacy-note">We never share your email with anyone.</p>
+    </div>
+    <div>
+      <label for="phoneNumber">Phone Number</label>
+      <input type="tel" id="phoneNumber" placeholder="Phone Number" class="inp" name="phonenum" value="{{person.phone_number}}">
+    </div>
+    </div>
+    <div class="form-group4">
+      <div>
+      <label for="aadharNumber">Aadhar Number</label>
+      <input type="text" id="aadharNumber" placeholder="2000-10000 30000" class="inp" name="aadhar_number" value="{{person.aadhar_number}}">
+    </div>
+    <div>
+      <label for="missingDate">Missing Date</label>
+      <input type="date" id="missingDate" placeholder="dd-mm-yyyy" class="inp" name="missing_date" value="{{person.missing_date}}" >
+    </div>
+    </div>
+    <div class="form-group5">
+        <label for="gender">Gender</label>
+        <div class="gender-options">
+          <input type="radio" id="male" name="gender" value="Male" {% if person.gender == "Male" %}checked{% endif %}>
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" value="Female" {% if person.gender == "Female" %}checked{% endif %}>
+          <label for="female">Female</label>
+          <input type="radio" id="other" name="gender" value="Other" {% if person.gender == "Other" %}checked{% endif %}>
+          <label for="other">Other</label>
+        </div>
+        <div>
+          <label for="location">Nearby Police Station</label>
+          <select name="location" id="location">
+            <option value="">--Please choose an option--</option>
+            {% for option in person %}
+              <option value="{{ option }}" {% if option == person.location %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    <div class="form-group6">
+      <div>
+      <label for="image">Image</label>
+      <input type="file" id="image" name="image" value="{person.image}">
+      </div>
+    
+    </div>
+    <button type="submit">Submit</button>
+
+</div>  
+</form>
+</div>
+</body>
+</html>
