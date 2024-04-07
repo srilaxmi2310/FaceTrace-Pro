@@ -183,6 +183,10 @@ button {
     <div class="heading">
         <h1>FaceTrace Pro</h1>
         <h2>Report Missing Case</h2>
+       
+        {%if error%}
+                        <p style="color: rgb(2, 2, 33); font-weight: 300;">{{error}}</p>
+                        {% endif %}
     </div>
     <form action="/reportuser/" method="POST" enctype="multipart/form-data"  id="reportForm">
         {%csrf_token%}

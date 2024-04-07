@@ -16,7 +16,7 @@
   html,body{
     margin: 0;
     padding:0;
-    height:100%;
+    min-height:100vh;
     overflow-y: auto; 
     overflow-x: hidden;
   }
@@ -75,6 +75,7 @@
     } 
     #address{
       height:40px;
+      width:500px;
       
     }
     .form-group4{
@@ -89,7 +90,7 @@
     }
     .main{
       background-color: rgb(220,220,223);
-      height: 80%;
+      min-height: 82vh;
       
     }
     .submain{
@@ -100,6 +101,8 @@
      font-size: 20px;
      font-weight: 300;
       padding: 60px;
+       min-height: 70vh;
+     
     }
     
     label {
@@ -128,23 +131,29 @@
       border-radius: 5px;
       box-sizing: border-box;
     }
-  
-    
-   
-   
-    .form-group5{
+    .form-group2{
       
       display:flex;
       justify-content: space-between;
      
     }
+  
+    
+   
+   
+    /* .form-group5{ */
+      
+      /* display:flex;
+      justify-content: space-between; */
+     
+    /* } */
     .gender-options {
   display: flex !important;
   width:500px;
  justify-content: start !important;
   margin-top: 30px;
   margin-left: 0;
-border:3px solid black;
+
   padding:10px
 }
 
@@ -262,68 +271,34 @@ border:3px solid black;
       <input type="text" id="lastName" placeholder="Enter your Surname" class="inp" name="last_name" value="{{person.last_name}}">
     </div>
 </div>
-    <div class="form-group1">
-      <div>
-      <label for="fathersName">Father's Name</label>
-      <input type="text" id="fathersName" placeholder="Enter Father's Name" class="inp" name="fathers_name" value="{{person.fathers_name}}">
-      </div>
-    <div>
-      <label for="dateOfBirth">Date of Birth</label>
+
+<div class="form-group2">
+  <div>
+
+    <label for="dateOfBirth">Date of Birth</label>
       <input type="date" id="dateOfBirth" placeholder="dd-mm-yyyy" class="inp" name="dob" value="{{person.date_of_birth}}">
-    </div>
-    </div>
-    <div class="form-group2">
-      <label for="address">Address</label>
-      <textarea id="address" placeholder="Enter your Address" class="inp" name="address" >{{ person.address|default:'' }}</textarea>
-    </div>
-    <div class="form-group3">
-      <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="yourEmail@example.com" class="inp" name="email" value="{{person.email}}">
-      <p class="privacy-note">We never share your email with anyone.</p>
-    </div>
-    <div>
-      <label for="phoneNumber">Phone Number</label>
-      <input type="tel" id="phoneNumber" placeholder="Phone Number" class="inp" name="phonenum" value="{{person.phone_number}}">
-    </div>
-    </div>
-    <div class="form-group4">
-      <div>
-      <label for="aadharNumber">Aadhar Number</label>
-      <input type="text" id="aadharNumber" placeholder="2000-10000 30000" class="inp" name="aadhar_number" value="{{person.aadhar_number}}">
-    </div>
-    <div>
-      <label for="missingDate">Missing Date</label>
-      <input type="date" id="missingDate" placeholder="dd-mm-yyyy" class="inp" name="missing_date" value="{{person.missing_date}}" >
-    </div>
-    </div>
+  </div>
+  <div>
+    <label for="address">Address</label>
+    <textarea id="address" placeholder="Enter your Address" class="inp" name="address" >{{ person.address|default:'' }}</textarea>
+  </div>
+</div>
+
+  
+   
+  
     <div class="form-group5">
+      <div>
         <label for="gender">Gender</label>
         <div class="gender-options">
-          <input type="radio" id="male" name="gender" value="Male" {% if person.gender == "Male" %}checked{% endif %}>
+          <input type="radio" id="male" name="gender" value="male" {% if person.gender == "male" %}checked{% endif %}>
           <label for="male">Male</label>
-          <input type="radio" id="female" name="gender" value="Female" {% if person.gender == "Female" %}checked{% endif %}>
+          <input type="radio" id="female" name="gender" value="female" {% if person.gender == "female" %}checked{% endif %}>
           <label for="female">Female</label>
-          <input type="radio" id="other" name="gender" value="Other" {% if person.gender == "Other" %}checked{% endif %}>
+          <input type="radio" id="other" name="gender" value="other" {% if person.gender == "other" %}checked{% endif %}>
           <label for="other">Other</label>
         </div>
-        <div>
-          <label for="location">Nearby Police Station</label>
-          <select name="location" id="location">
-            <option value="">--Please choose an option--</option>
-            {% for option in person %}
-              <option value="{{ option }}" {% if option == person.location %}selected{% endif %}>{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
       </div>
-    <div class="form-group6">
-      <div>
-      <label for="image">Image</label>
-      <input type="file" id="image" name="image" value="{person.image}">
-      </div>
-    
-    </div>
     <button type="submit">Submit</button>
 
 </div>  

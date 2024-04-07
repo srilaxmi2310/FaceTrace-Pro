@@ -14,7 +14,7 @@ import string
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-
+from django.db.models import Q
     
 
 
@@ -215,7 +215,8 @@ def reportpolice(request):
         print("************")
         print(reported_by)
         person.save()
-        return render(request, 'report_police.html', {"message": "successful"})
+        return render(request, 'policehome2.html')
+        # return render(request, 'report_police.html', {"message": "successful"})
 
     return render(request, 'report_police.html')
 
@@ -355,13 +356,15 @@ def reportuser(request):
         # Note: You need to define how you're getting the location from the form
         # For this example, let's assume you get it from the form directly
         location = request.POST.get('location')
+        if(MissingPerson.objects.filter(aadhar_number=aadhar_number)):
+            return render(request, 'report_user.html', {"error": "Case already exist for this Aadhar number"})
 
         # Check if the location exists
         police_station = Police.objects.filter(location=location).first()
 
         if police_station:
             # If police station is found, use its id as investigating_police
-            investigating_police = police_station.id
+            investigating_police = police_station.login_id
 
             # Create the MissingPerson object with the provided data
             person = MissingPerson.objects.create(
@@ -587,7 +590,13 @@ def send_registration_email(obj_police,obj2_police,password):
 
 
 def viewpolice(request):
-    data=Police.objects.all()
+    data=[]
+
+    for d in Police.objects.all():
+        obj=Login.objects.get(id=d.login_id)
+        d.email=obj.email
+        data.append(d)
+
     return(render(request,"viewpolice.html",{"police_details": data}))
 def viewuser(request):
     data=User.objects.all()
@@ -788,10 +797,11 @@ def viewcase(request):
         search_query = request.GET.get('search', '')  # Get the search query from the request
 
         person = MissingPerson.objects.filter(reported_by=user_id)
+        
 
         if search_query:
             person= person.filter(aadhar_number__icontains=search_query)
-
+        
         return render(request, 'viewcase.html', {'missingperson': person, 'search_query': search_query})
     else:
         # Redirect to login page if user is not logged in
@@ -818,12 +828,13 @@ def viewcase(request):
 def investigatingcase(request):
     if 'user_id' in request.session:
         user_id = request.session['user_id']
+        print(user_id)
         try:
             police = Police.objects.get(login_id=user_id)
             search_query = request.GET.get('search', '')  # Get the search query from the request
             
             # Retrieve cases reported at the police station by both users and police
-            cases = MissingPerson.objects.filter(investigating_police=user_id) | MissingPerson.objects.filter(reported_by=user_id)
+            cases = MissingPerson.objects.filter(investigating_police=user_id)
 
             if search_query:
                 cases = cases.filter(aadhar_number__icontains=search_query)
@@ -849,13 +860,18 @@ def investigatingcase(request):
 
     
 def transfercase(request):
-    return(render(request,""))
-
-
-
-
-
+    case_id=request.GET['caseid']
+    if request.POST:
+        police=request.POST['station']
+        obj=MissingPerson.objects.get(id=case_id)
+        p=Police.objects.get(location=police)
+        obj.investigating_police=p.login_id
+        obj.save()
+        return redirect(investigatingcase)
     
+    police_stations = Police.objects.values_list('location', flat=True)
+    return(render(request,"transfercase.html",{"locations":police_stations}))
+
 
 
 def deletepolice(request):
@@ -899,36 +915,28 @@ def editperson(request):
          person_id=request.POST.get('id')
          first_name = request.POST.get('first_name')
          last_name = request.POST.get('last_name')
-         father_name = request.POST.get('fathers_name')
          date_of_birth = request.POST.get('dob')
          address = request.POST.get('address')
-         phone_number = request.POST.get('phonenum')
-         aadhar_number = request.POST.get('aadhar_number')
-         missing_from = request.POST.get('missing_date')
-         email = request.POST.get('email')
-         image = request.FILES.get('image')
          gender = request.POST.get('gender')
-         location = request.POST.get('location')
          obj=MissingPerson.objects.get(id=person_id)
          obj.id=person_id
          obj.first_name=first_name
          obj.last_name=last_name
-         obj.father_name=father_name
          obj.date_of_birth=date_of_birth
-         obj.address=address
-         obj.phone_number=phone_number
-         obj.aadhar_number=aadhar_number
-         obj.missing_from=missing_from
-         obj.email=email 
+         obj.address=address        
          obj.gender=gender
-         obj.location=location
-         if image:  
-            obj.image = image
          obj.save()
          return(redirect(missing))
     person_id=request.GET['id']
     obj=MissingPerson.objects.get(id=person_id)
-    return(render(request,"editperson.html",{"person":obj}))  
+    person={
+        "first_name":obj.first_name,
+        "last_name":obj.last_name,
+        "date_of_birth" :obj.date_of_birth ,
+        "address":obj.address,
+        "gender":obj.gender
+    }
+    return(render(request,"editperson.html",{"person":person}))  
     
     
     
